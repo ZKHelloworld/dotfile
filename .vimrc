@@ -23,6 +23,7 @@ Bundle "plasticboy/vim-markdown"
 Bundle "vim-scripts/matrix.vim--Yang"
 Bundle "skammer/vim-css-color"
 Bundle "tpope/vim-fugitive"
+Bundle "bronson/vim-trailing-whitespace"
 
 filetype plugin indent on
 
