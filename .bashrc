@@ -8,7 +8,6 @@
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
-
 # append to the history file, don't overwrite it
 shopt -s histappend
 
@@ -36,6 +35,7 @@ fi
 case "$TERM" in
     xterm-color) color_prompt=yes;;
 esac
+
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
@@ -106,10 +106,14 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+# set git alias
 alias ck="git checkout"
-alias s ="git status"
-alias g ="git log"
+alias s="git status"
+alias g="git log"
 alias br="git branch"
 alias pr="git pull --rebase"
-alias cr="git cherry-pick"
+alias ch="git cherry-pick"
 alias re="git reset"
+alias a="git add"
+alias co="git commit"
+alias pu="git push"
