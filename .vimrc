@@ -100,3 +100,6 @@ let g:syntastic_always_populate_loc_list = 1
 
 "=====> vim-trailing-whitespace
 noremap <leader>ss :FixWhitespace<CR>
+
+"=====> Global copy
+:vmap <C-c> "+y
