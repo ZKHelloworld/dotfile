@@ -1,7 +1,37 @@
-" =====> System settings
-filetype plugin indent on
-syntax on
+" =====> vundle settings
 set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle
+Plugin 'gmarik/vundle'
+
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'majutsushi/tagbar'
+Plugin 'vim-scripts/cscope_macros.vim'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'Shougo/neocomplcache'
+Plugin 'othree/html5.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'pangloss/vim-javascript'
+Plugin 'maksimr/vim-jsbeautify'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'vim-scripts/matrix.vim--Yang'
+Plugin 'skammer/vim-css-color'
+Plugin 'tpope/vim-fugitive'
+Plugin 'bronson/vim-trailing-whitespace'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+" =====> pathogen setting
+execute pathogen#infect()
+
+" =====> System settings
+syntax on
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -16,30 +46,6 @@ set mouse=a
 set mousehide
 set hlsearch
 nnoremap <CR> :nohlsearch<CR>
-
-" =====> vundle settings
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-" let Vundle manage Vundle
-Bundle 'gmarik/vundle'
-Bundle 'scrooloose/nerdtree'
-Bundle "scrooloose/nerdcommenter"
-Bundle "majutsushi/tagbar"
-Bundle "vim-scripts/cscope_macros.vim"
-Bundle "jistr/vim-nerdtree-tabs"
-Bundle "Shougo/neocomplcache"
-Bundle "othree/html5.vim"
-Bundle "scrooloose/syntastic"
-Bundle "pangloss/vim-javascript"
-Bundle "maksimr/vim-jsbeautify"
-Bundle "plasticboy/vim-markdown"
-Bundle "vim-scripts/matrix.vim--Yang"
-Bundle "skammer/vim-css-color"
-Bundle "tpope/vim-fugitive"
-Bundle "bronson/vim-trailing-whitespace"
-
-" =====> pathogen setting
-execute pathogen#infect()
 
 " =====> nerdtree setting
 nmap <F8> :NERDTreeToggle<CR>
