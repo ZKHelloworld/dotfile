@@ -10,12 +10,12 @@ Plugin 'gmarik/vundle'
 
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'scrooloose/syntastic'
 Plugin 'majutsushi/tagbar'
 Plugin 'vim-scripts/cscope_macros.vim'
-Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'Shougo/neocomplcache'
 Plugin 'othree/html5.vim'
-Plugin 'scrooloose/syntastic'
 Plugin 'pangloss/vim-javascript'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'plasticboy/vim-markdown'
@@ -92,10 +92,7 @@ let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 if has('statusline')
     set laststatus=2
     set statusline=%<%f\ " 文件名
-    set statusline+=%w%h%m%r " 文件状态
-    set statusline+=\ [%{&ff}/%Y] " 文件类型. 如unix/MKD，unix格式markdown文本
     set statusline+=\ [%{getcwd()}] " 文件路径
-    set statusline+=\ [%{fugitive#statusline()}] " Git分支
     set statusline+=%=%-14.(%l,%c%V%)\ %p%% " 行列、文件进度信息
 endif
 set fileencodings=utf-8,gbk,usc-bom,cp93
