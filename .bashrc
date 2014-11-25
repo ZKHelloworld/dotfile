@@ -56,7 +56,7 @@ fi
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1=':\w\$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -114,6 +114,10 @@ alias br="git branch"
 alias pr="git pull --rebase"
 alias ch="git cherry-pick"
 alias re="git reset"
+alias reh="git reset --hard"
+alias res="git reset --soft"
 alias a="git add"
 alias co="git commit"
 alias pu="git push"
+alias prc="git rebase --continue"
+alias pra="git rebase --abort"
