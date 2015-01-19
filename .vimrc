@@ -32,9 +32,9 @@ execute pathogen#infect()
 
 " =====> System settings
 syntax on
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set tags+=~/.vim/systags
 set number
 set showcmd
@@ -104,5 +104,6 @@ let g:syntastic_always_populate_loc_list = 1
 "=====> vim-trailing-whitespace
 noremap <leader>ss :FixWhitespace<CR>
 
-"=====> Global copy
-:vmap <C-c> "+y
+"=====> Global copy for MAC
+:vmap <C-c> y:call system("pbcopy", getreg("\""))<CR>
+:nmap <C-v> :call setreg("\"", system("pbpaste"))<CR>p
