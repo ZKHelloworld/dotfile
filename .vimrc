@@ -63,8 +63,10 @@ let g:neocomplcache_min_syntax_length = 1
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 let g:neocomplcache_dictionary_filetype_lists = {
     \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
+    \ 'vimshell' : '~/.vimshell_hist',
+    \ 'scheme' : '~/.gosh_completions',
+    \ 'css' : '~/.vim/bundle/dict/css3.dict',
+    \ 'javascript' : '~/.vim/bundle/dict/javascript.dic'
     \ }
 if !exists('g:neocomplcache_keyword_patterns')
     let g:neocomplcache_keyword_patterns = {}
@@ -72,11 +74,8 @@ endif
 let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 inoremap <expr><C-l> neocomplcache#complete_common_string()
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y> neocomplcache#close_popup()
-inoremap <expr><C-e> neocomplcache#cancel_popup()
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 if !exists('g:neocomplcache_omni_patterns')
@@ -113,3 +112,42 @@ colorscheme solarized
 " ariline
 let g:airline_powerline_fonts = 1
 let g:airline_section_c = '%F'
+
+" auto pair close tags
+inoremap ( ()<Esc>i
+inoremap [ []<Esc>i
+inoremap { {<CR>}<Esc>O
+autocmd Syntax html,vim inoremap < <lt>><Esc>i| inoremap > <c-r>=ClosePair('>')<CR>
+inoremap ) <c-r>=ClosePair(')')<CR>
+inoremap ] <c-r>=ClosePair(']')<CR>
+inoremap } <c-r>=CloseBracket()<CR>
+inoremap " <c-r>=QuoteDelim('"')<CR>
+inoremap ' <c-r>=QuoteDelim("'")<CR>
+function ClosePair(char)
+  if getline('.')[col('.') - 1] == a:char
+    return "\<Right>"
+  else
+    return a:char
+  endif
+endf
+function CloseBracket()
+  if match(getline(line('.') + 1), '\s*}') < 0
+    return "\<CR>}"
+  else
+    return "\<Esc>j0f}a"
+  endif
+endf
+function QuoteDelim(char)
+  let line = getline('.')
+  let col = col('.')
+  if line[col - 2] == "\\"
+    "Inserting a quoted quotation mark into the string
+    return a:char
+  elseif line[col - 1] == a:char
+   "Escaping out of the string
+   return "\<Right>"
+  else
+    "Starting a string
+    return a:char.a:char."\<Esc>i"
+  endif
+endf
